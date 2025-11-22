@@ -3,6 +3,7 @@ import {Routes, Route} from 'react-router'
 import './App.css'
 import Home from './components/Home'
 import Checkout from './components/Checkout'
+import Orders from './components/Orders'
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Routes>
         < Route index element={ <Home/>}/>
         < Route path='checkout' element={ <Checkout/>}/>
+        < Route path='orders' element={ <Orders/>}/>
       </Routes>
     </>
   )
