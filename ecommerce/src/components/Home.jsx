@@ -1,16 +1,15 @@
 import React from 'react'
+import axios from "axios";
 import '../styles/Home.css'
 import Header from './Header'
 import { products } from '../data/products.js'
 
 export default function Home() {
 
-    fetch('http://localhost:3000/api/products') 
+    axios.get('http://localhost:3000/api/products') 
     .then((response) => {
-      return response.json()
-    }).then((data) => {
-        console.log(data)
-      })
+       console.log(response.data)
+    })
 
 
     return (
