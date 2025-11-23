@@ -1,34 +1,20 @@
 .home-page {
-  margin-top: 60px;
+  margin-top: 80px;
+  padding: 0 40px;
 }
 
 .home-page .products-grid {
   display: grid;
-
-  /* - In CSS Grid, 1fr means a column will take up the
-       remaining space in the grid.
-     - If we write 1fr 1fr ... 1fr; 8 times, this will
-       divide the grid into 8 columns, each taking up an
-       equal amount of the space.
-     - repeat(8, 1fr); is a shortcut for repeating "1fr"
-       8 times (instead of typing out "1fr" 8 times).
-       repeat(...) is a special property that works with
-       display: grid; */
   grid-template-columns: repeat(8, 1fr);
+  gap: 0;
 }
 
-/* @media is used to create responsive design (making the
-   website look good on any screen size). This @media
-   means when the screen width is 2000px or less, we
-   will divide the grid into 7 columns instead of 8. */
 @media (max-width: 2000px) {
   .home-page .products-grid {
     grid-template-columns: repeat(7, 1fr);
   }
 }
 
-/* This @media means when the screen width is 1600px or
-   less, we will divide the grid into 6 columns. */
 @media (max-width: 1600px) {
   .home-page .products-grid {
     grid-template-columns: repeat(6, 1fr);
@@ -66,64 +52,110 @@
 }
 
 .home-page .product-container {
-  padding-top: 40px;
-  padding-bottom: 25px;
-  padding-left: 25px;
-  padding-right: 25px;
+  padding-top: 50px;
+  padding-bottom: 35px;
+  padding-left: 30px;
+  padding-right: 30px;
 
-  border-right: 1px solid rgb(240, 240, 240);
-  border-bottom: 1px solid rgb(240, 240, 240);
+  border-right: 2px solid #f0f0f0;
+  border-bottom: 2px solid #f0f0f0;
+  background: #ffffff;
+  position: relative;
+  overflow: hidden;
 
   display: flex;
   flex-direction: column;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.home-page .product-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #1a1a1a, #2d2d2d);
+  transition: left 0.4s ease;
+}
+
+.home-page .product-container:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 32px rgba(26, 26, 26, 0.12);
+  border-color: transparent;
+}
+
+.home-page .product-container:hover::before {
+  left: 0;
 }
 
 .home-page .product-image-container {
   display: flex;
   justify-content: center;
   align-items: center;
-
-  height: 180px;
-  margin-bottom: 20px;
+  height: 220px;
+  margin-bottom: 25px;
+  position: relative;
+  overflow: hidden;
+  background: #fafafa;
 }
 
 .home-page .product-image {
-  /* Images overflow the container by default. To prevent this, set
-     max-width and max-height to 100% to stay inside container. */
   max-width: 100%;
   max-height: 100%;
-  border-radius: 5px;
+  border-radius: 0;
+  transition: transform 0.4s ease;
+  padding: 10px;
+}
+
+.home-page .product-container:hover .product-image {
+  transform: scale(1.08);
 }
 
 .home-page .product-name {
-  height: 40px;
-  margin-bottom: 5px;
+  height: auto;
+  margin-bottom: 8px;
+  font-weight: 700;
+  font-size: 16px;
+  color: #1a1a1a;
+  line-height: 1.4;
+  letter-spacing: -0.2px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
 }
 
 .home-page .product-rating-container {
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+  gap: 8px;
 }
 
 .home-page .product-rating-stars {
   width: 100px;
-  margin-right: 6px;
+  margin-right: 0;
+  filter: invert(0.3); /* Makes stars dark gray */
 }
 
 .home-page .product-rating-count {
-  color: rgb(25, 135, 84);
+  color: #666;
   cursor: auto;
-  margin-top: 3px;
+  margin-top: 0;
+  font-weight: 600;
+  font-size: 14px;
 }
 
 .home-page .product-price {
-  font-weight: 700;
-  margin-bottom: 10px;
+  font-weight: 800;
+  margin-bottom: 15px;
+  font-size: 20px;
+  color: #1a1a1a;
+  letter-spacing: -0.5px;
 }
 
 .home-page .product-quantity-container {
-  margin-bottom: 17px;
+  margin-bottom: 20px;
 }
 
 .home-page .product-spacer {
@@ -131,27 +163,112 @@
 }
 
 .home-page .added-to-cart {
-  color: rgb(25, 135, 84);
-  font-size: 16px;
+  color: #1a1a1a;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 
   display: flex;
   align-items: center;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 
-  /* At first, the "Added to cart" message will
-     be invisible. Use JavaScript to change the
-     opacity and make it visible. */
   opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+
+.home-page .added-to-cart.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .home-page .added-to-cart img {
-  height: 19px;
-  margin-right: 6px;
+  height: 20px;
+  margin-right: 8px;
+  filter: invert(1); /* Makes checkmark dark */
+  background: #1a1a1a;
+  border-radius: 50%;
+  padding: 2px;
 }
 
 .home-page .add-to-cart-button {
   width: 100%;
-  padding: 8px;
-  height: 34px;
-  margin-top: 1px;
+  padding: 14px;
+  height: 44px;
+  margin-top: 2px;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  color: #ffffff;
+  border: 2px solid transparent;
+  border-radius: 0;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  font-size: 13px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.home-page .add-to-cart-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.home-page .add-to-cart-button:hover {
+  background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+  border-color: #1a1a1a;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(26, 26, 26, 0.2);
+}
+
+.home-page .add-to-cart-button:hover::before {
+  left: 100%;
+}
+
+.home-page .add-to-cart-button:active {
+  transform: translateY(0);
+}
+
+/* Additional modern touches */
+.home-page .product-container::after {
+  content: 'NEW';
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #1a1a1a;
+  color: #ffffff;
+  padding: 4px 8px;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.home-page .product-container:hover::after {
+  opacity: 1;
+}
+
+/* Mobile optimizations */
+@media (max-width: 575px) {
+  .home-page {
+    margin-top: 60px;
+    padding: 0 20px;
+  }
+  
+  .home-page .product-container {
+    padding: 30px 20px;
+  }
+  
+  .home-page .product-image-container {
+    height: 180px;
+  }
 }

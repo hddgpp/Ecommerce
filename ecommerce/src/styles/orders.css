@@ -1,9 +1,9 @@
 .orders-page {
-  max-width: 850px;
-  margin-top: 90px;
-  margin-bottom: 100px;
-  padding-left: 20px;
-  padding-right: 20px;
+  max-width: 1100px;
+  margin-top: 120px;
+  margin-bottom: 140px;
+  padding-left: 40px;
+  padding-right: 40px;
 
   /* margin-left: auto;
      margin-right auto;
@@ -14,102 +14,162 @@
 }
 
 .orders-page .page-title {
-  font-weight: 700;
-  font-size: 26px;
-  margin-bottom: 25px;
+  font-weight: 800;
+  font-size: 36px;
+  margin-bottom: 40px;
+  color: #1a1a1a;
+  letter-spacing: -0.5px;
+  text-transform: uppercase;
 }
 
 .orders-page .orders-grid {
   display: grid;
   grid-template-columns: 1fr;
-  row-gap: 50px;
+  row-gap: 60px;
 }
 
 .orders-page .order-header {
-  background-color: rgb(255, 255, 255);
-  border: 1px solid rgb(222, 222, 222);
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  border: none;
+  color: #ffffff;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  padding: 20px 25px;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  padding: 28px 35px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.orders-page .order-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  transition: left 0.6s ease;
+}
+
+.orders-page .order-header:hover::before {
+  left: 100%;
 }
 
 .orders-page .order-header-left-section {
   display: flex;
   flex-shrink: 0;
+  gap: 50px;
 }
 
 .orders-page .order-header-label {
   font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 14px;
+  opacity: 0.8;
 }
 
 .orders-page .order-date,
 .orders-page .order-total {
-  margin-right: 45px;
+  margin-right: 0;
+}
+
+.orders-page .order-date span:last-child,
+.orders-page .order-total span:last-child {
+  font-weight: 600;
+  font-size: 16px;
+  opacity: 1;
+  display: block;
+  margin-top: 4px;
 }
 
 .orders-page .order-header-right-section {
   flex-shrink: 1;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 @media (max-width: 575px) {
   .orders-page .order-header {
     flex-direction: column;
     align-items: start;
-    line-height: 23px;
-    padding: 15px;
+    line-height: 24px;
+    padding: 24px;
+    gap: 16px;
   }
 
   .orders-page .order-header-left-section {
     flex-direction: column;
+    gap: 16px;
+    width: 100%;
   }
 
   .orders-page .order-header-label {
-    margin-right: 5px;
+    margin-right: 0;
+    font-size: 12px;
   }
 
   .orders-page .order-date,
   .orders-page .order-total {
-    display: grid;
-    grid-template-columns: auto 1fr;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
     margin-right: 0;
   }
 
   .orders-page .order-header-right-section {
-    display: grid;
-    grid-template-columns: auto 1fr;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
   }
 }
 
 .orders-page .order-details-grid {
-  padding: 40px 25px;
-  border: 1px solid rgb(222, 222, 222);
+  padding: 45px 35px;
+  border: 2px solid #f0f0f0;
   border-top: none;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  background: #ffffff;
 
   display: grid;
-  grid-template-columns: 110px 1fr 220px;
-  column-gap: 35px;
-  row-gap: 60px;
-  align-items: center;
+  grid-template-columns: 130px 1fr 220px;
+  column-gap: 40px;
+  row-gap: 70px;
+  align-items: start;
+  position: relative;
+}
+
+.orders-page .order-details-grid::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 35px;
+  right: 35px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #f0f0f0, transparent);
 }
 
 @media (max-width: 800px) {
   .orders-page .order-details-grid {
-    grid-template-columns: 110px 1fr;
+    grid-template-columns: 130px 1fr;
     row-gap: 0;
-    padding-bottom: 8px;
+    padding-bottom: 20px;
+    column-gap: 30px;
   }
 }
 
 @media (max-width: 450px) {
   .orders-page .order-details-grid {
     grid-template-columns: 1fr;
+    padding: 35px 24px;
   }
 }
 
@@ -118,37 +178,95 @@
 }
 
 .orders-page .product-image-container img {
-  max-width: 110px;
-  max-height: 110px;
+  max-width: 130px;
+  max-height: 130px;
+  border: 2px solid #f0f0f0;
+  padding: 6px;
+  background: #ffffff;
+  transition: transform 0.3s ease;
+}
+
+.orders-page .product-image-container:hover img {
+  transform: scale(1.05);
 }
 
 .orders-page .product-name {
   font-weight: 700;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
+  font-size: 18px;
+  color: #1a1a1a;
+  letter-spacing: -0.2px;
 }
 
 .orders-page .product-delivery-date {
-  margin-bottom: 3px;
+  margin-bottom: 6px;
+  font-weight: 500;
+  color: #666;
 }
 
 .orders-page .product-quantity {
-  margin-bottom: 8px;
+  margin-bottom: 12px;
+  font-weight: 500;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  font-size: 14px;
 }
 
 .orders-page .buy-again-button {
   font-size: 14px;
-  width: 140px;
-  height: 36px;
-  border-radius: 5px;
+  width: 160px;
+  height: 44px;
+  border-radius: 0;
+  border: 2px solid #1a1a1a;
+  background: transparent;
+  color: #1a1a1a;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.orders-page .buy-again-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: #1a1a1a;
+  transition: left 0.3s ease;
+  z-index: -1;
+}
+
+.orders-page .buy-again-button:hover {
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(26, 26, 26, 0.15);
+}
+
+.orders-page .buy-again-button:hover::before {
+  left: 0;
+}
+
+.orders-page .buy-again-button:active {
+  transform: translateY(0);
 }
 
 .orders-page .buy-again-icon {
   width: 20px;
   margin-right: 10px;
+  transition: transform 0.3s ease;
+}
+
+.orders-page .buy-again-button:hover .buy-again-icon {
+  transform: scale(1.1);
 }
 
 .orders-page .product-actions {
@@ -158,63 +276,78 @@
 .orders-page .track-package-button {
   width: 100%;
   font-size: 14px;
-  padding: 8px;
+  padding: 12px;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  color: #ffffff;
+  border: 2px solid transparent;
+  border-radius: 0;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+.orders-page .track-package-button:hover {
+  background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+  border-color: #1a1a1a;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(26, 26, 26, 0.15);
 }
 
 @media (max-width: 800px) {
   .orders-page .buy-again-button {
-    margin-bottom: 10px;
+    margin-bottom: 16px;
+    width: 160px;
   }
 
   .orders-page .product-actions {
-    /* grid-column: 2 means this element will be placed
-       in column 2 in the grid. (Normally, the column that
-       an element is placed in is determined by the order
-       of the elements in the HTML. grid-column overrides
-       this default ordering). */
     grid-column: 2;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
   }
 
   .orders-page .track-package-button {
-    width: 140px;
+    width: 160px;
   }
 }
 
 @media (max-width: 450px) {
   .orders-page .product-image-container {
     text-align: center;
-    margin-bottom: 25px;
+    margin-bottom: 30px;
   }
 
   .orders-page .product-image-container img {
-    max-width: 150px;
-    max-height: 150px;
+    max-width: 160px;
+    max-height: 160px;
   }
 
   .orders-page .product-name {
-    margin-bottom: 10px;
+    margin-bottom: 12px;
+    font-size: 20px;
   }
 
   .orders-page .product-quantity {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
   }
 
   .orders-page .buy-again-button {
     width: 100%;
-    margin-bottom: 15px;
+    margin-bottom: 16px;
+    height: 48px;
   }
 
   .orders-page .product-actions {
-    /* grid-column: auto; undos grid-column: 2; from above.
-      This element will now be placed in its normal column
-      in the grid. */
     grid-column: auto;
-    margin-bottom: 70px;
+    margin-bottom: 80px;
+    width: 100%;
   }
 
   .orders-page .track-package-button {
     width: 100%;
-    padding: 12px;
+    padding: 14px;
+    height: 48px;
   }
 }

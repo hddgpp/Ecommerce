@@ -1,9 +1,9 @@
 .tracking-page {
-  max-width: 850px;
-  margin-top: 90px;
-  margin-bottom: 100px;
-  padding-left: 30px;
-  padding-right: 30px;
+  max-width: 1100px;
+  margin-top: 120px;
+  margin-bottom: 140px;
+  padding-left: 40px;
+  padding-right: 40px;
 
   /* margin-left: auto;
      margin-right auto;
@@ -11,71 +11,193 @@
      without needing a container. */
   margin-left: auto;
   margin-right: auto;
+  background: #ffffff;
 }
 
 .tracking-page .back-to-orders-link {
   display: inline-block;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #1a1a1a;
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 4px;
+  transition: all 0.3s ease;
+}
+
+.tracking-page .back-to-orders-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #1a1a1a;
+  transition: width 0.3s ease;
+}
+
+.tracking-page .back-to-orders-link:hover::after {
+  width: 100%;
 }
 
 .tracking-page .delivery-date {
-  font-size: 25px;
-  font-weight: 700;
-  margin-bottom: 10px;
+  font-size: 32px;
+  font-weight: 800;
+  margin-bottom: 16px;
+  color: #1a1a1a;
+  letter-spacing: -0.5px;
 }
 
 .tracking-page .product-info {
-  margin-bottom: 3px;
+  margin-bottom: 8px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #666;
 }
 
 .tracking-page .product-image {
-  max-width: 150px;
-  max-height: 150px;
-  margin-top: 25px;
-  margin-bottom: 50px;
+  max-width: 180px;
+  max-height: 180px;
+  margin-top: 40px;
+  margin-bottom: 60px;
+  border: 2px solid #f0f0f0;
+  padding: 8px;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .tracking-page .progress-labels-container {
   display: flex;
   justify-content: space-between;
-  font-size: 20px;
-  font-weight: 500;
-  margin-bottom: 15px;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #666;
 }
 
 .tracking-page .current-status {
-  color: rgb(25, 135, 84);
+  color: #1a1a1a;
+  font-weight: 700;
+  position: relative;
+}
+
+.tracking-page .current-status::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  right: -8px;
+  width: 8px;
+  height: 8px;
+  background: #1a1a1a;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 @media (max-width: 575px) {
   .tracking-page .progress-labels-container {
     font-size: 16px;
   }
+  
+  .tracking-page {
+    padding-left: 24px;
+    padding-right: 24px;
+    margin-top: 100px;
+    margin-bottom: 100px;
+  }
 }
 
 @media (max-width: 450px) {
   .tracking-page .progress-labels-container {
     flex-direction: column;
-    margin-bottom: 5px;
+    margin-bottom: 12px;
+    gap: 12px;
   }
 
   .tracking-page .progress-label {
-    margin-bottom: 3px;
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .tracking-page .progress-label::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: currentColor;
+    border-radius: 50%;
   }
 }
 
 .tracking-page .progress-bar-container {
-  height: 25px;
+  height: 8px;
   width: 100%;
-
-  border: 1px solid rgb(200, 200, 200);
-  border-radius: 50px;
+  border: none;
+  background: #f0f0f0;
+  border-radius: 0;
   overflow: hidden;
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.tracking-page .progress-bar-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255,255,255,0.3) 50%, 
+    transparent 100%);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 .tracking-page .progress-bar {
   height: 100%;
-  background-color: rgb(25, 135, 84);
-  border-radius: 50px;
+  background: linear-gradient(90deg, #1a1a1a 0%, #2d2d2d 100%);
+  border-radius: 0;
   width: 50%;
+  position: relative;
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tracking-page .progress-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 20px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2));
+  transform: skewX(-15deg);
 }
