@@ -1,8 +1,20 @@
 
+import axios from "axios";
+import React from 'react'
 import '../styles/checkout.css'
 import CheckoutHeader from './CheckoutHeader'
 
 export default function Checkout({cart}) {
+
+  const [deliveryOption, setDeliveryOption] = React.useState([])
+
+  React.useEffect(() => {
+    axios('/api/delivery-options?expand=estimatedDeliveryTime')
+    .then((res) => {
+      setDeliveryOption(res.data)
+    })
+  }, [])
+
     return(
         <>
     <title>Checkout</title>
@@ -49,6 +61,23 @@ export default function Checkout({cart}) {
                 <div className="delivery-options-title">
                   Choose a delivery option:
                 </div>
+                {deliveryOption.map((deliveryOption) => {
+                  return(
+                    <div key={deliveryOption.id} className="delivery-option">
+                  <input type="radio" checked
+                    className="delivery-option-input"
+                    name="delivery-option-1" />
+                  <div>
+                    <div className="delivery-option-date">
+                      Tuesday, June 21
+                    </div>
+                    <div className="delivery-option-price">
+                      FREE Shipping
+                    </div>
+                  </div>
+                </div>
+                  )
+                })}
                 <div className="delivery-option">
                   <input type="radio" checked
                     className="delivery-option-input"
