@@ -1,12 +1,12 @@
 
 import '../styles/orders.css'
 import Header from './Header'
-export default function Orders() {
+export default function Orders({cart}) {
     return(
         <>
         <title>orders</title>
            
-        <Header/>
+        <Header cart={cart}/>
     <div className="orders-page">
       <div className="page-title">Your Orders</div>
 

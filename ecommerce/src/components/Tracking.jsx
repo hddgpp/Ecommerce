@@ -2,14 +2,14 @@
 import '../styles/tracking.css'
 import Header from './Header'
 
-export default function Tracking() {
+export default function Tracking({cart}) {
     return(
         <>
            <title>tracking</title>
-      <Header/>
+      <Header cart={cart}/>
     <div className="tracking-page">
       <div className="order-tracking">
-        <a className="back-to-orders-link link-primary" href="orders.html">
+        <a className="back-to-orders-link link-primary" href="/orders">
           View all orders
         </a>
 

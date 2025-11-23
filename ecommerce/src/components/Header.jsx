@@ -1,7 +1,7 @@
 import { Link } from 'react-router'
 import '../styles/header.css'
 
-export default function Header({cart = []}) {
+export default function Header({cart}) {
   let totalQuantity = 0
 
   cart.forEach((cartItem) => {
@@ -29,12 +29,12 @@ export default function Header({cart = []}) {
       </div>
 
       <div className="right-section">
-        <Link className="orders-link header-link" to="orders">
+        <Link className="orders-link header-link" to="/orders">
 
           <span className="orders-text">Orders</span>
         </Link>
 
-        <Link className="cart-link header-link" to="checkout">
+        <Link className="cart-link header-link" to="/checkout">
           <img className="cart-icon" src="images/icons/cart-icon.png" />
           <div className="cart-quantity">{totalQuantity}</div>
           <div className="cart-text">Cart</div>
