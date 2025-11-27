@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import axios from "axios";
 import '../styles/Home.css'
 import Header from './Header'
 
-export default function Home({cart}) {
+export default function Home({cart, loadCart}) {
 
-  const [products, setProducts] = React.useState([])
+  const [products, setProducts] = useState([])
+  
+  const [quantity, setQuantity] = useState(1)
     
     React.useEffect(() => {
       axios.get('/api/products') 
@@ -46,7 +48,9 @@ export default function Home({cart}) {
           </div>
 
           <div className="product-quantity-container">
-            <select>
+            <select value={quantity} onChange={(e) => {
+              setQuantity(Number(e.target.value))
+            }}>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -68,11 +72,12 @@ export default function Home({cart}) {
           </div>
 
           <button className="add-to-cart-button button-primary"
-                  onClick={() => {
-                    axios.post('/api/cart-items', {
+                  onClick={async() => {
+                   await axios.post('/api/cart-items', {
                       productId: product.id,
-                      quantity: 1,
+                      quantity: quantity,
                     })
+                    await loadCart()
                   }}>
             Add to Cart
           </button>
