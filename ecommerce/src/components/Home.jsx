@@ -70,7 +70,8 @@ export default function Home({cart}) {
           <button className="add-to-cart-button button-primary"
                   onClick={() => {
                     axios.post('/api/cart-items', {
-                      productID: 
+                      productId: product.id,
+                      quantity: 1,
                     })
                   }}>
             Add to Cart
