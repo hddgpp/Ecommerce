@@ -12,7 +12,6 @@ export default function Home({cart}) {
         .then((response) => {
         setProducts(response.data)
         })
-       
     }, [])
 
 
@@ -22,28 +21,28 @@ export default function Home({cart}) {
         <Header cart={cart}/>
     <div className="home-page">
       <div className="products-grid">
-        {products.map((products) => {
+        {products.map((product) => {
           return (
-            <div key={products.id} className="product-container">
+            <div key={product.id} className="product-container">
           <div className="product-image-container">
             <img className="product-image"
-              src={products.image} />
+              src={product.image} />
           </div>
 
           <div className="product-name limit-text-to-2-lines">
-            {products.name}
+            {product.name}
           </div>
 
           <div className="product-rating-container">
             <img className="product-rating-stars"
-              src={`images/ratings/rating-${products.rating.stars * 10}.png`} />
+              src={`images/ratings/rating-${product.rating.stars * 10}.png`} />
             <div className="product-rating-count link-primary">
-              {products.rating.count}
+              {product.rating.count}
             </div>
           </div>
 
           <div className="product-price">
-            <p>${(products.priceCents / 100).toFixed(2)}</p>
+            <p>${(product.priceCents / 100).toFixed(2)}</p>
           </div>
 
           <div className="product-quantity-container">
@@ -68,7 +67,12 @@ export default function Home({cart}) {
             Added
           </div>
 
-          <button className="add-to-cart-button button-primary">
+          <button className="add-to-cart-button button-primary"
+                  onClick={() => {
+                    axios.post('/api/cart-items', {
+                      productID: 
+                    })
+                  }}>
             Add to Cart
           </button>
         </div>
